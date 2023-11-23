@@ -152,6 +152,7 @@ h2 {
   position: relative;
   z-index: 2;
 }
+
 .back, .add-button{
   display: inline-block;
   font-weight: 400;
@@ -192,6 +193,10 @@ h2 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-width: 0;
+}
+.weather__city{
+  min-width: 50px;
+  border: 1px solid black;
 }
 .card, .phrase{
   padding: 5px;

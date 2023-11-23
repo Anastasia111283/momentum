@@ -3,6 +3,7 @@ const input = document.getElementById('country');
 //Возвращает ссылку на элемент по его идентификатору
 const btn = document.getElementById('api-btn');
 const card = document.getElementById('card-field');
+const city = document.getElementById('city');
 const API_WEATHER_KEY = 'cb08bd05993b4191aa8442fcbd4f93c0';
 const ERROR_GEODATA_IS_EMPTY = 125;
 /**
@@ -77,10 +78,17 @@ function getWeather(cityName) {
 }
 //Метод addEventListener() интерфейса EventTarget настраивает функцию,
 // которая будет вызываться всякий раз, когда указанное событие доставляется целевому объекту.
-btn.addEventListener('click', () => {//по нажатию
-    const city = input.value.trim();
-    //Метод trim() значений String удаляет пробелы с обоих концов этой строки и возвращает новую строку, не изменяя исходную строку.
-    if (city) {
-        getWeather(city);
+city.addEventListener('keydown', (e) => {//по нажатию
+    const value =city.textContent.trim();
+    console.log(value);
+    if(e.keyCode === 13 || e.keyCode === 27){
+        const value = city.innerText.trim();
+        console.log(true);
+        if (value) {
+            getWeather(value);
+        }
+        city.blur();
+        e.preventDefault();
     }
+    //Метод trim() значений String удаляет пробелы с обоих концов этой строки и возвращает новую строку, не изменяя исходную строку.
 });
