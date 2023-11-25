@@ -43,22 +43,6 @@ function updateList(list) {
         taskTemplate(item, list, index);
     });
     updateEvents(list);
-
-
-    // if (list === PENDING_LIST) {
-    //   pendingTasks.innerHTML = '';
-    //   tasksObj.pendingArray.forEach((item, index) => {
-    //     taskTemplate(item, PENDING_LIST, index);
-    //   });
-    //   updateEvents(PENDING_LIST);
-    // }
-    // if (list === COMPLETED_LIST) {
-    //   completedTasks.innerHTML = '';
-    //   tasksObj.completedArray.forEach((item, index) => {
-    //     taskTemplate(item, COMPLETED_LIST, index);
-    //   });
-    //   updateEvents(COMPLETED_LIST);
-    // }
 }
 
 function taskTemplate(message, todoposition, index) {
@@ -81,7 +65,6 @@ function taskTemplate(message, todoposition, index) {
         completedTasks.insertAdjacentHTML('beforeend', task);
     }
 }
-
 function updateEvents(listType) {
     const list = document.getElementById(`${listType}Tasks`);
     const tasks = list.querySelectorAll('.task');
@@ -99,17 +82,6 @@ function updateEvents(listType) {
             tasksObj[`${secondList}Array`].unshift(saveTaskData);
             updateList(listType);
             updateList(secondList);
-
-            // if (listType === PENDING_LIST) {
-            //   const [saveTaskData] = tasksObj[`${listType}Array`].splice(+task.dataset.index, 1);
-            //   tasksObj[`${COMPLETED_LIST}Array`].unshift(saveTaskData);
-            // }
-            // if (listType === COMPLETED_LIST) {
-            //   const [saveTaskData] = tasksObj[`${listType}Array`].splice(+task.dataset.index, 1);
-            //   tasksObj[`${PENDING_LIST}Array`].unshift(saveTaskData);
-            // }
-            // updateList(PENDING_LIST);
-            // updateList(COMPLETED_LIST);
         })
         editBtn.addEventListener('click', () => {
             saveBtn.style.display = 'block';

@@ -28,25 +28,3 @@ const getQuote = () => {
     document.getElementById("qText").innerHTML = quote.text;
     document.getElementById("qAutor").innerHTML = `- ${quote.author}`;
 };
-// const qText=document.getElementById('qText');
-// const qAutor=document.getElementById('qAutor');
-// const qUpdate=document.getElementById('qUpdate');
-// async function updateQuotes(){
-//     let url=`https://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&jsonp=?&lang=ru`
-//     const request=await fetch(url)
-//     const dataQuotes=await request.json()
-//     if(dataQuotes.cod!=='404'){
-//         qText.innerText=dataQuotes.quote.quoteText
-//         qAutor.innerText=dataQuotes.quote.quoteAuthor
-//     }
-//     console.log(dataQuotes);
-// }
-// function updateText(){
-//     // updateQuotes()
-//     qUpdate.classList.add('rotate')
-//     setTimeout(function (){
-//         qUpdate.classList.remove('rotate')
-//     },1000)
-// }
-// qUpdate.addEventListener('click',updateText)
-// updateQuotes()
