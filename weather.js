@@ -52,7 +52,6 @@ function getWeather(cityName) {
                 return Promise.reject(ERROR_GEODATA_IS_EMPTY);
                 //Метод Promise.reject(reason) возвращает объект. Promise, который был отклонён по указанной причине
             }
-            console.log(geo);
             weatherInfo.lon = geo.lon; //Долгота в градусах. Обязательное поле.
             return fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&lat=${geo.lat}&lon=${geo.lon}&appid=${API_WEATHER_KEY}`)
         })
@@ -79,11 +78,8 @@ function getWeather(cityName) {
 //Метод addEventListener() интерфейса EventTarget настраивает функцию,
 // которая будет вызываться всякий раз, когда указанное событие доставляется целевому объекту.
 city.addEventListener('keydown', (e) => {//по нажатию
-    const value =city.textContent.trim();
-    console.log(value);
     if(e.keyCode === 13 || e.keyCode === 27){
         const value = city.innerText.trim();
-        console.log(true);
         if (value) {
             getWeather(value);
         }
@@ -92,3 +88,9 @@ city.addEventListener('keydown', (e) => {//по нажатию
     }
     //Метод trim() значений String удаляет пробелы с обоих концов этой строки и возвращает новую строку, не изменяя исходную строку.
 });
+city.addEventListener('blur', () => {
+    const value = city.innerText.trim();
+    if (value) {
+        getWeather(value);
+    }
+})

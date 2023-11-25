@@ -29,9 +29,9 @@ setInterval(() => {
 document.getElementById("tDay").innerHTML = formatAMPM();
 function formatAMPM() {
     let day = new Date(),
-        dayOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'],
-        monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    return dayOfWeek [day.getDay()]+', '+day.getDate()+'th of '+monthsOfYear[day.getMonth()]+', '+day.getFullYear();
+        dayOfWeek = ['ВОСКРЕСЕНЬЕ', 'ПОНЕДЕЛЬНИК', 'ВТОРНИК', 'СРЕДА', 'ЧЕТВЕРГ', 'ПЯТНИЦА', 'СУББОТА'],
+        monthsOfYear = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октябряя', 'Ноября', 'Декабря'];
+    return dayOfWeek [day.getDay()]+', '+day.getDate()+' '+monthsOfYear[day.getMonth()]+', '+day.getFullYear() + ' года';
 }
 //**************************************************//
 // Get Name (получить имя)

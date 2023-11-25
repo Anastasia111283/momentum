@@ -1,90 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--задает отсутствие масштабирования-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> <!--подключить шрифты-->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <!--подключить шрифты-->
     <link rel="stylesheet" href="styles/style.css">
     <title>momentum</title>
 </head>
+
 <body>
-<input id="pKey" type="checkbox" class="poopap__key">
-<label id="pBack"  for="pKey" class="poopap__background"></label>
-<div id="pWindow" class="poopap__window animate__animated ">
-    <h1 class="poopap__title">Справочная информация</h1>
-    <p class="poopap__anotation">Город, для погоды, задается на русском языке.</p>
-    <p class="poopap__anotation">Города для часов задаются на английском. В случае если город задан не правильно - часы
-        примут значение [NAME OF CITY]. Список допустимых значений городов приведен ниже и основан на API. В случае
-        возникновения вопросов по работе приложения свяжитесь со мной.</p>
-    <div class="block-city">
-        <ul id="pCity" class="pCity"></ul>
+    <input id="pKey" type="checkbox" class="poopap__key">
+    <label id="pBack" for="pKey" class="poopap__background"></label>
+    <div id="pWindow" class="poopap__window animate__animated ">
+        <h1 class="poopap__title">Справочная информация</h1>
+        <p class="poopap__anotation">Город, для погоды, задается на русском языке.</p>
+        <p class="poopap__anotation">Города для часов задаются на английском. В случае если город задан не правильно -
+            часы
+            примут значение [NAME OF CITY]. Список допустимых значений городов приведен ниже и основан на API. В случае
+            возникновения вопросов по работе приложения свяжитесь со мной.</p>
+        <div class="block-city">
+            <ul id="pCity" class="pCity"></ul>
+        </div>
     </div>
-</div>
     <!------------------------------------------------------------>
-<div class="grid-content"> <!--окна-->
-    <!------------------------------------------------------------>
-    <section class="main-clock"> <!--первое окно-->
-         <!--Часы-->
-        <div id="time">
-            <span class="time">
-            <span class="hr">0</span>
-            <span class="hr">0</span>
-            <span>:</span>
-            <span class="min">0</span>
-            <span class="min">0</span>
-            <span>:</span>
-            <span class="sec">0</span>
-            <span class="sec">0</span>
-            </span>
-        </div>
-        <h1 id="tDay" class="tDay"></h1> <!--надпись дня-->
-        <h1 class="tBlock">
-            <span class="greeting">Good Afternoon,</span><!--приветствие-->
-            <span contenteditable="true" id="name">[Enter Name]</span> <!--имя-->
-        </h1>
-        <h2>What Is Your Focus For Today?</h2> <!--ваши планы на сегодня?-->
-        <h2 contenteditable="true" id="focus">[Enter Focus]</h2><!--планы-->
-        <button id="update" class="updBack"></button> <!--Кнопка для переключения background-->
-    </section>
-    <!------------------------------------------------------------>
-    <section class="weather"><!--погода-->
-        <div id="city" class="input__wrapper">
-         <span contenteditable="true" class="weather__city"></span>
-        </div>
-        <div id="card-field" class="card"></div>
-    </section>
-    <!------------------------------------------------------------>
-    <section class="world-clocks">
-        <div class="todo-list__wrapper">
-        <div class="add__task todo-list__field">
-            <input type="text" id="addField" class="add-field" placeholder="Ваши планы">
-            <button id="addBtn" class="add-button">Выполнить</button>
-        </div>
-        <div id="pendingTasks" class="pending__tasks todo-list__field"></div>
-        <div id="completedTasks" class="completed__tasks todo-list__field"></div>
-        <div class="buttons_wrapper todo-list__field">
-            <button id="saveLS">Save storage</button>
-            <button id="loadLS">Load storage</button>
-        </div>
-        </div>
-    </section>
-    <!------------------------------------------------------------>
-    <section class="quotes">
-        <div id="random-phrase" class="phrase">
+    <div class="grid-content"> <!--окна-->
+        <!------------------------------------------------------------>
+        <section class="main-clock"> <!--первое окно-->
+            <!--Часы-->
+            <div id="time">
+                <span class="time">
+                    <span class="hr">0</span>
+                    <span class="hr">0</span>
+                    <span>:</span>
+                    <span class="min">0</span>
+                    <span class="min">0</span>
+                    <span>:</span>
+                    <span class="sec">0</span>
+                    <span class="sec">0</span>
+                </span>
+            </div>
+            <h1 id="tDay" class="tDay"></h1> <!--надпись дня-->
+            <h1 class="tBlock">
+                <span class="greeting">Привет,</span><!--приветствие-->
+                <span contenteditable="true" id="name">[Введите ваше имя]</span> <!--имя-->
+            </h1>
+            <h2>Какие задачи нужно выполнить сегодня?</h2> <!--ваши планы на сегодня?-->
+            <h2 contenteditable="true" id="focus">[Введите задачи на сегодня]</h2><!--планы-->
+            <button id="update" class="updBack"></button> <!--Кнопка для переключения background-->
+        </section>
+        <!------------------------------------------------------------>
+        <section class="weather"><!--погода-->
+            <div class="input__wrapper">
+                <span id="city" contenteditable="true" class="weather__city"></span>
+            </div>
+            <div id="card-field" class="card"></div>
+        </section>
+        <!------------------------------------------------------------>
+        <section class="world-clocks">
+            <div class="todo-list__wrapper">
+                <div class="add__task todo-list__field">
+                    <input type="text" id="addField" class="add-field" placeholder="Ваши планы">
+                    <button id="addBtn" class="add-button">Выполнить</button>
+                </div>
+                <div id="pendingTasks" class="pending__tasks todo-list__field"></div>
+                <div id="completedTasks" class="completed__tasks todo-list__field"></div>
+                <div class="buttons_wrapper todo-list__field">
+                    <button id="saveLS">Сохранить</button>
+                    <button id="loadLS">Загрузить</button>
+                </div>
+            </div>
+        </section>
+        <!------------------------------------------------------------>
+        <section class="quotes">
+            <div id="random-phrase" class="phrase">
 
-        <p id="qText" class="qText">"Человек, который не делает ошибок, обычно вообще ничего не делает."</p>
-        <p id="qAutor" class="qAutor">Эдвард Фелпс</p>
+                <p id="qText" class="qText">"Человек, который не делает ошибок, обычно вообще ничего не делает."</p>
+                <p id="qAutor" class="qAutor">Эдвард Фелпс</p>
 
-        </div>
-        <button id="qUpdate" class="qUpdate" onclick="getQuote()"></button><!--Кнопка для переключения background-->
-    </section>
-</div>
+            </div>
+            <button id="qUpdate" class="qUpdate" onclick="getQuote()"></button><!--Кнопка для переключения-->
+        </section>
+    </div>
     <!------------------------------------------------------------>
-<script src="script.js"></script><!--основной код-->
-<script src="update-background.js"></script><!--обновление background-->
-<script src="weather.js"></script><!--погода-->
-<script src="todo.js"></script><!--todoList-->
-<script src="quotes.js"></script><!--цитаты-автор-->
+    <script src="script.js"></script><!--основной код-->
+    <script src="update-background.js"></script><!--обновление background-->
+    <script src="weather.js"></script><!--погода-->
+    <script src="todo.js"></script><!--todoList-->
+    <script src="quotes.js"></script><!--цитаты-автор-->
 </body>
+
 </html>
