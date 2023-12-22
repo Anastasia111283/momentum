@@ -1,16 +1,22 @@
 'use strict'
-const input = document.getElementById('country');
+
+import {IOpenWeatherResponse} from './interfaces';
+
+// const input = document.getElementById('country');
 //Возвращает ссылку на элемент по его идентификатору
-const btn = document.getElementById('api-btn');
+// const btn = document.getElementById('api-btn');
 const card = document.getElementById('card-field');
 const city = document.getElementById('city');
 const API_WEATHER_KEY = 'cb08bd05993b4191aa8442fcbd4f93c0';
 const ERROR_GEODATA_IS_EMPTY = 125;
+
+
 /**
  * Отрисовывоет данные в карточке на основании полученных данных от API
  * @param info Данные от API
  */
 async function renderCard(info) {
+    console.log(info);
     //макет данных
     const htmlTemp = `
         <img src="https://openweathermap.org/img/wn/${info.icon}@2x.png" alt="Weather icon">
@@ -32,12 +38,13 @@ async function renderCard(info) {
  * Получение данных о погоде
  * @param cityName Наименование города
  */
-function getWeather(cityName) {
+function getWeather(cityName){
     const weatherInfo = {
         icon: '',
         temp: '',
         desc: '',
         wind: '',
+        lon: '' // это избавляет от ошибки или запись undefined
     }
     // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_WEATHER_KEY}`)

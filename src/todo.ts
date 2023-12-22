@@ -1,6 +1,8 @@
 'use strict'
 
-let tasksObj = {
+import {ITaskObj} from "./interfaces";
+
+let tasksObj: ITaskObj = {
     pendingArray: [],
     completedArray: []
 }
@@ -9,7 +11,9 @@ const PENDING_LIST = 'pending';
 const COMPLETED_LIST = 'completed';
 const TODO_STORAGE_KEY = 'todoData';
 
-const addField = document.getElementById('addField');
+type TPosihion = 'pending' | 'completed';
+
+const addField = <HTMLInputElement>document.getElementById('addField');
 const addBtn = document.getElementById('addBtn');
 const pendingTasks = document.getElementById('pendingTasks');
 const completedTasks = document.getElementById('completedTasks');
@@ -27,30 +31,28 @@ loadLS.addEventListener('click',()=>{
         updateList(COMPLETED_LIST);
     }
 })
-
 addBtn.addEventListener('click', () => {
-    const value = addField.value.trim();
+    const element = addField as HTMLInputElement;
+    const value = element.value.trim();
     if (value) {
         tasksObj.pendingArray.push(value);
-        addField.value = '';
+        element.value = '';
         updateList(PENDING_LIST);
     }
 })
-
-function updateList(list) {
+function updateList(list: TPosihion) {
     list === PENDING_LIST ? pendingTasks.innerHTML = '' : completedTasks.innerHTML = '';
     tasksObj[`${list}Array`].forEach((item, index) => {
         taskTemplate(item, list, index);
     });
     updateEvents(list);
 }
-
-function taskTemplate(message, todoposition, index) {
+function taskTemplate(message: string, todoPosition: TPosihion, index: number) {
     const task = `
-        <div class="task ${todoposition===COMPLETED_LIST ? 'completed' : ''}" data-type="${todoposition}" data-index="${index}">
+        <div class="task ${todoPosition===COMPLETED_LIST ? 'completed' : ''}" data-type="${todoPosition}" data-index="${index}">
             <button class="ticket"></button>
             <p class="text">${message}</p>
-            <input class="edit" type="edit">
+            <input class="edit" type="text">
             <div class="buttons__wrapper">
                 <button class="tool-button edit-btn">Edit</button>
                 <button class="tool-button save-btn">Save</button>
@@ -58,23 +60,23 @@ function taskTemplate(message, todoposition, index) {
             </div>
         </div>
     `;
-    if (todoposition === PENDING_LIST) {
+    if (todoPosition === PENDING_LIST) {
         pendingTasks.insertAdjacentHTML('beforeend', task);
     }
-    if (todoposition === COMPLETED_LIST) {
+    if (todoPosition === COMPLETED_LIST) {
         completedTasks.insertAdjacentHTML('beforeend', task);
     }
 }
-function updateEvents(listType) {
+function updateEvents(listType: TPosihion) {
     const list = document.getElementById(`${listType}Tasks`);
     const tasks = list.querySelectorAll('.task');
-    tasks.forEach(task => {
-        const ticket = task.querySelector('.ticket');
-        const text = task.querySelector('.text');
-        const edit = task.querySelector('.edit');
-        const saveBtn = task.querySelector('.save-btn');
-        const editBtn = task.querySelector('.edit-btn');
-        const deleteBtn = task.querySelector('.delete-btn');
+    tasks.forEach((task: HTMLElement) => {
+        const ticket = <HTMLElement>task.querySelector('.ticket');
+        const text = <HTMLElement>task.querySelector('.text');
+        const edit = <HTMLInputElement>task.querySelector('.edit');
+        const saveBtn = <HTMLElement>task.querySelector('.save-btn');
+        const editBtn = <HTMLElement>task.querySelector('.edit-btn');
+        const deleteBtn = <HTMLElement>task.querySelector('.delete-btn');
 
         ticket.addEventListener('click', () => {
             const secondList = listType === PENDING_LIST ? COMPLETED_LIST : PENDING_LIST;
@@ -88,15 +90,15 @@ function updateEvents(listType) {
             editBtn.style.display = 'none';
             text.style.display = 'none';
             edit.style.display = 'block';
-            edit.value = tasksObj[`${listType}Array`][+task.dataset.index];
+            (edit as HTMLInputElement).value = tasksObj[`${listType}Array`][+task.dataset.index];
         });
         saveBtn.addEventListener('click', () => {
             editBtn.style.display = 'block';
             saveBtn.style.display = 'none';
             text.style.display = 'block';
             edit.style.display = 'none';
-            text.innerText = edit.value;
-            tasksObj[`${listType}Array`][+task.dataset.index] = edit.value;
+            text.innerText = (edit as HTMLInputElement).value;
+            tasksObj[`${listType}Array`][+task.dataset.index] = (edit as HTMLInputElement).value;
         });
         deleteBtn.addEventListener('click', () => {
             tasksObj[`${listType}Array`].splice(+task.dataset.index, 1);

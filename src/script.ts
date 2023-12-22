@@ -4,8 +4,6 @@
 const hour = document.querySelectorAll('.hr'),
     min = document.querySelectorAll('.min'),
     sec = document.querySelectorAll('.sec');
-// Надпись дня
-const greeting = document.querySelector('.greeting');//приветствие
 
 //**************************************************//
 // Show Time (часы)
@@ -30,16 +28,16 @@ document.getElementById("tDay").innerHTML = formatAMPM();
 function formatAMPM() {
     let day = new Date(),
         dayOfWeek = ['ВОСКРЕСЕНЬЕ', 'ПОНЕДЕЛЬНИК', 'ВТОРНИК', 'СРЕДА', 'ЧЕТВЕРГ', 'ПЯТНИЦА', 'СУББОТА'],
-        monthsOfYear = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октябряя', 'Ноября', 'Декабря'];
+        monthsOfYear = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
     return dayOfWeek [day.getDay()]+', '+day.getDate()+' '+monthsOfYear[day.getMonth()]+', '+day.getFullYear() + ' года';
 }
 //**************************************************//
 // Get Name (получить имя)
-let name = document.getElementById('name'); //имя
-let backupName;
+let userName = <HTMLElement>document.getElementById('name'); //имя
+let backupName: string;
 function initName() {//функция заполнения
     getToLocalStorage();
-    backupName=name.textContent;
+    backupName=userName.textContent;
 }
 function changeName(e) {//изменение
     if (e.keyCode == 13) {//при Enter
@@ -58,23 +56,24 @@ function saveToLocalStorage(nam, value) { //сохранение
 function getToLocalStorage() {//если будут данные
     let titleName = localStorage.getItem('name');
     if (titleName) {
-        name.textContent = titleName;
+        userName.textContent = titleName;
     }
 }
 window.addEventListener('load', initName);//загрузка контента
-name.addEventListener('keyup', changeName);//при опускании кнопки
-name.addEventListener('blur',//покидаем поле
+userName.addEventListener('keyup', changeName);//при опускании кнопки
+userName.addEventListener('blur',//покидаем поле
     (e) => {
-        backupName = e.target.textContent;
-        saveToLocalStorage('name', e.target.textContent);
+    const element = e.target as HTMLElement;
+        backupName = element.textContent;
+        saveToLocalStorage('name', element.textContent);
     });
 //**************************************************//
 // Get Focus (планы)
-let focus = document.getElementById('focus');//планы
-let backupFocus;
+let userFocus = document.getElementById('focus');//планы
+let backupFocus: string;
 function initFocus() {//функция заполнения
     getFocusToLocalStorage();
-    backupFocus=focus.textContent;
+    backupFocus=userFocus.textContent;
 }
 function changeFocus(e) {//изменение
     if (e.keyCode == 13) {//при Enter
@@ -93,15 +92,16 @@ function saveFocusToLocalStorage(num, val) { //сохранение
 function getFocusToLocalStorage() {//если будут данные
     let titleFocus = localStorage.getItem('focus');
     if (titleFocus) {
-        focus.textContent = titleFocus;
+        userFocus.textContent = titleFocus;
     }
 }
 window.addEventListener('load', initFocus);//загрузка контента
-focus.addEventListener('keyup', changeFocus);//при опускании кнопки
-focus.addEventListener('blur',//покидаем поле
+userFocus.addEventListener('keyup', changeFocus);//при опускании кнопки
+userFocus.addEventListener('blur',//покидаем поле
     (e) => {
-        backupFocus= e.target.textContent;
-        saveFocusToLocalStorage('focus', e.target.textContent);
+        const element = e.target as HTMLElement;
+        backupFocus = element.textContent;
+        saveFocusToLocalStorage('focus', element.textContent);
     });
 //**************************************************//
 

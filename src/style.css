@@ -242,7 +242,7 @@ h2 {
   height: 45px;
 }
 .task.completed .ticket{
-  background-image: url('../img/icons/tick.jpg');
+  background-image: url('./assets/icons/tick.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -332,7 +332,7 @@ h2 {
   height: 50px;
   border-radius: 50%;
   border: 1px solid #fff;
-  background-image: url('../img/icons/btnUpdate.png');
+  background-image: url('./assets/icons/btnUpdate.png');
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
